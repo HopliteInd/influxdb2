@@ -3,4 +3,7 @@ __pycache__/
 *.pyo
 *.swp
 *~
-docs/build/
+.tox/
+dist/
+doc-out/
+*.egg-info/

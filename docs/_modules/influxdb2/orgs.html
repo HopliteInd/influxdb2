@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>influxdb2.orgs &#8212; InfluxDB2 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">InfluxDB2</a></h1>
+
+
+
+<p class="blurb">InfluxDB v2.0 Python API</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../influxdb2/modules.html">influxdb2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">influxdb2 Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  <li><a href="../influxdb2.html">influxdb2</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for influxdb2.orgs</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Orgnizations API.</span>
+
+
+<span class="sd">This object is based on the following JSON structure that comes back</span>
+<span class="sd">from InfluxDB.</span>
+
+<span class="sd">.. _json-org-structure:</span>
+
+<span class="sd">.. code-block:: json</span>
+
+<span class="sd">    {</span>
+<span class="sd">        &quot;links&quot;: {</span>
+<span class="sd">            &quot;self&quot;: &quot;/api/v2/orgs/1&quot;,</span>
+<span class="sd">            &quot;members&quot;: &quot;/api/v2/orgs/1/members&quot;,</span>
+<span class="sd">            &quot;owners&quot;: &quot;/api/v2/orgs/1/owners&quot;,</span>
+<span class="sd">            &quot;labels&quot;: &quot;/api/v2/orgs/1/labels&quot;,</span>
+<span class="sd">            &quot;secrets&quot;: &quot;/api/v2/orgs/1/secrets&quot;,</span>
+<span class="sd">            &quot;buckets&quot;: &quot;/api/v2/buckets?org=myorg&quot;,</span>
+<span class="sd">            &quot;tasks&quot;: &quot;/api/v2/tasks?org=myorg&quot;,</span>
+<span class="sd">            &quot;dashboards&quot;: &quot;/api/v2/dashboards?org=myorg&quot;</span>
+<span class="sd">        },</span>
+<span class="sd">        &quot;id&quot;: &quot;string&quot;,</span>
+<span class="sd">        &quot;name&quot;: &quot;string&quot;,</span>
+<span class="sd">        &quot;description&quot;: &quot;string&quot;,</span>
+<span class="sd">        &quot;createdAt&quot;: &quot;2019-08-24T14:15:22Z&quot;,</span>
+<span class="sd">        &quot;updatedAt&quot;: &quot;2019-08-24T14:15:22Z&quot;,</span>
+<span class="sd">        &quot;status&quot;: &quot;active&quot;</span>
+<span class="sd">    }</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span> <span class="k">as</span> <span class="nn">jsonlib</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+
+<span class="c1"># 3rd party</span>
+<span class="kn">import</span> <span class="nn">ciso8601</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">types</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">obj</span>
+
+
+<div class="viewcode-block" id="Organizations"><a class="viewcode-back" href="../../influxdb2/influxdb2.orgs.html#influxdb2.orgs.Organizations">[docs]</a><span class="k">class</span> <span class="nc">Organizations</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Interface to InfluxDB Organizations API.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        db (influxdb2.core.Influx): Base connection instance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_db</span> <span class="o">=</span> <span class="n">db</span>
+
+<div class="viewcode-block" id="Organizations.iterate"><a class="viewcode-back" href="../../influxdb2/influxdb2.orgs.html#influxdb2.orgs.Organizations.iterate">[docs]</a>    <span class="k">def</span> <span class="nf">iterate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">org_id</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">user_id</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Iterate over all orgs in the database.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            org (str): Optional. Restrict output to only this org based on</span>
+<span class="sd">                name.</span>
+<span class="sd">            org_id (str): Optional. Restrict output to only this org based</span>
+<span class="sd">                on id.</span>
+<span class="sd">            user_id (str): Optional. Restrict output to only this orgs</span>
+<span class="sd">                visible by this user id.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;descending&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">org</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;org&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">org</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">org_id</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;orgID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">org_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_id</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+        <span class="n">rsp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v2/orgs&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">orgdict</span> <span class="ow">in</span> <span class="n">rsp</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                <span class="n">org</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">Org</span><span class="p">()</span>
+                <span class="n">org</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">orgdict</span><span class="p">)</span>
+                <span class="k">yield</span> <span class="n">org</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rsp</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">100</span><span class="p">:</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;offset&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">100</span>
+                <span class="n">rsp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v2/orgs&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Shawn Michael.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

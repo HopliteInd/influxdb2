@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>influxdb2.orgs module &#8212; InfluxDB2 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="influxdb2.types module" href="influxdb2.types.html" />
+    <link rel="prev" title="influxdb2.exceptions module" href="influxdb2.exceptions.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">InfluxDB2</a></h1>
+
+
+
+<p class="blurb">InfluxDB v2.0 Python API</p>
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">influxdb2</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="influxdb2.html">influxdb2 package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">influxdb2 Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">influxdb2</a><ul>
+  <li><a href="influxdb2.html">influxdb2 package</a><ul>
+      <li>Previous: <a href="influxdb2.exceptions.html" title="previous chapter">influxdb2.exceptions module</a></li>
+      <li>Next: <a href="influxdb2.types.html" title="next chapter">influxdb2.types module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-influxdb2.orgs">
+<span id="influxdb2-orgs-module"></span><h1>influxdb2.orgs module<a class="headerlink" href="#module-influxdb2.orgs" title="Permalink to this headline">¶</a></h1>
+<p>Orgnizations API.</p>
+<p>This object is based on the following JSON structure that comes back
+from InfluxDB.</p>
+<div class="highlight-json notranslate" id="json-org-structure"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;self&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/orgs/1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;members&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/orgs/1/members&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;owners&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/orgs/1/owners&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/orgs/1/labels&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;secrets&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/orgs/1/secrets&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;buckets&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/buckets?org=myorg&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tasks&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/tasks?org=myorg&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;dashboards&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/dashboards?org=myorg&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-08-24T14:15:22Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-08-24T14:15:22Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt id="influxdb2.orgs.Organizations">
+<em class="property">class </em><code class="sig-prename descclassname">influxdb2.orgs.</code><code class="sig-name descname">Organizations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/influxdb2/orgs.html#Organizations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#influxdb2.orgs.Organizations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Interface to InfluxDB Organizations API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<a class="reference internal" href="influxdb2.core.html#influxdb2.core.Influx" title="influxdb2.core.Influx"><em>influxdb2.core.Influx</em></a>) – Base connection instance.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="influxdb2.orgs.Organizations.iterate">
+<code class="sig-name descname">iterate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">org</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">org_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">user_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/influxdb2/orgs.html#Organizations.iterate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#influxdb2.orgs.Organizations.iterate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over all orgs in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>org</strong> (<em>str</em>) – Optional. Restrict output to only this org based on
+name.</p></li>
+<li><p><strong>org_id</strong> (<em>str</em>) – Optional. Restrict output to only this org based
+on id.</p></li>
+<li><p><strong>user_id</strong> (<em>str</em>) – Optional. Restrict output to only this orgs
+visible by this user id.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Shawn Michael.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/influxdb2/influxdb2.orgs.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
