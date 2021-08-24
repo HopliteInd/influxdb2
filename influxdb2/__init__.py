@@ -13,6 +13,7 @@ from . import types
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
+
 def connect(url: str, token: str):
     """Get an InfluxDB "connection" object.
 
@@ -25,4 +26,4 @@ def connect(url: str, token: str):
     Returns:
         :class:`influxdb2.core.Influx` instance.
     """
-    return core.InfluxDB(url, token)
+    return core.Influx(url, token)

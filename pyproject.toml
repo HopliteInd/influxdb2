@@ -1,2 +1,8 @@
 [tool.black]
 line_length = 79
+
+[tool.pylint.'MESSAGES CONTROL']
+max-line-length = 79
+disable = "C0330, C0326"
+extension-pkg-allow-list = "ciso8601"
+

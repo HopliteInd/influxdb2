@@ -41,7 +41,7 @@ from .. import types
 INVALID = "-invalid-"
 
 
-class Org:
+class Org:  # pylint: disable=R0902,C0103
     """Object describing an InfluxDB Organization."""
 
     ID_REGEX = re.compile("^[a-f0-9]{16}$")
@@ -58,8 +58,8 @@ class Org:
         self._org_id = org_id if org_id else INVALID
 
         self._active = True
-        self._createdAt = 0
-        self._updatedAt = 0
+        self._created_at = 0
+        self._updated_at = 0
         self._links = {}
 
     def _reset(self):
@@ -67,8 +67,8 @@ class Org:
         self._description = None
         self._org_id = INVALID
         self._active = True
-        self._createdAt = 0
-        self._updatedAt = 0
+        self._created_at = 0
+        self._updated_at = 0
         self._links = {}
 
     @property
@@ -108,8 +108,9 @@ class Org:
 
     @description.setter
     def description(self, value: types.NullStr):
-        if not isinstance(value, (str, None)):
-            raise ValueError("Description must be a string or None.")
+        if value is not None:
+            if not isinstance(value, str):
+                raise ValueError("Description must be a string or None.")
 
         self._description = value
 
@@ -144,15 +145,15 @@ class Org:
         Raises:
             ValueError: when an invalid value is encountered.
         """
-        return self._createdAt
+        return self._created_at
 
     @created.setter
     def created(self, value: types.TimeVal):
         if isinstance(value, (int, float)):
-            self._createdAt = float(value)
+            self._created_at = float(value)
         elif isinstance(value, str):
             dt = ciso8601.parse_datetime(value)
-            self._createdAt = dt.timestamp()
+            self._created_at = dt.timestamp()
         else:
             raise ValueError(
                 "Invalid type for a timestamp: %s" % (type(value))
@@ -167,15 +168,15 @@ class Org:
         Raises:
             ValueError: when an invalid value is encountered.
         """
-        return self._updatedAt
+        return self._updated_at
 
     @updated.setter
     def updated(self, value: types.TimeVal):
         if isinstance(value, (int, float)):
-            self._updatedAt = float(value)
+            self._updated_at = float(value)
         elif isinstance(value, str):
             dt = ciso8601.parse_datetime(value)
-            self._updatedAt = dt.timestamp()
+            self._updated_at = dt.timestamp()
         else:
             raise ValueError(
                 "Invalid type for a timestamp: %s" % (type(value))
@@ -259,4 +260,4 @@ class Org:
             raise ValueError(
                 "%s.from_json() Invalid json data: %s"
                 % (__class__.__name__, err)
-            )
+            ) from None

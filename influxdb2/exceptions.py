@@ -2,8 +2,6 @@
 
 """
 
-import typing
-
 
 class InfluxError(Exception):
     """Base exception for all errors in the influxdb2 package."""
@@ -56,8 +54,9 @@ class InfluxHTTPError(InfluxError):
 
 
 class AuthenticationDenied(InfluxHTTPError):
+    """Raised when a bad password or user name is encountered."""
+
     def __init__(self):
         super().__init__(
             401, {"error": "Authentication Denied"}, "Authentication Denied"
         )
-

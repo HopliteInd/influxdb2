@@ -28,15 +28,11 @@ from InfluxDB.
     }
 """
 
-import json as jsonlib
-import re
 import typing
 
 # 3rd party
-import ciso8601
 
 # Local imports
-from . import types
 from . import obj
 
 
