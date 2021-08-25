@@ -1,5 +1,5 @@
-influxdb2
-=========
+lib
+===
 
 .. toctree::
    :maxdepth: 4

@@ -1,6 +1,14 @@
 influxdb2 package
 =================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   influxdb2.obj
+
 Submodules
 ----------
 

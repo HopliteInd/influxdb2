@@ -189,13 +189,13 @@ class Influx:
         Parameters:
             path: API Endpoint path
             ignore_401: (optional) If ``True`` then don't raise an
-                :class:`AuthorizationDeneied` exception when a 401 response
-                code is encountered.
+                    :class:`AuthorizationDeneied` exception when a 401 response
+                    code is encountered.
             kwargs: Additional arguments that the requests library takes
 
         Returns: ``Response`` named tuple.
-        """
 
+        """
         return self._request("delete", path, ignore_401=ignore_401, **kwargs)
 
     @property

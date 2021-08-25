@@ -1,17 +1,18 @@
-.. InfluxDB2 documentation master file, created by
-   sphinx-quickstart on Thu Aug  5 14:37:20 2021.
+.. lib documentation master file, created by
+   sphinx-quickstart on Wed Aug 25 13:40:21 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-InfluxDB 2.0 Python API
-=======================
+Welcome to lib's documentation!
+===============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
-   influxdb2/modules
+   influxdb2
    examples/index
+   modules
 
 
 Indices and tables

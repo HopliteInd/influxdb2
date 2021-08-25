@@ -6,5 +6,6 @@ __pycache__/
 .tox/
 dist/
 doc-out/
+doc-src/_build/
 *.egg-info/
 .python-version

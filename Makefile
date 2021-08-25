@@ -22,6 +22,7 @@ html: Makefile
 	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 github: Makefile
+	sphinx-apidoc -o doc-src -e lib
 	rm -rf doc-out docs
 	$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	mv doc-out/html docs

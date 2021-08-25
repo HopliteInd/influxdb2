@@ -4,7 +4,7 @@ import os
 import sys
 import socket
 
-sys.path.insert(0, "..")
+sys.path.insert(0, os.path.realpath(os.path.join("..", "lib")))
 import influxdb2
 
 VALID_JSON = """
