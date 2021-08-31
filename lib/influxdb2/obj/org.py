@@ -1,10 +1,28 @@
-"""Organization Object
+# Copyright 2021 Hoplite Industries, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""
+Organization Object
+===================
 
 
 This object is based on the following JSON structure that comes back
 from InfluxDB.
 
 .. _json-org-structure:
+
+JSON Response for an Organization.
 
 .. code-block:: json
 
@@ -42,9 +60,15 @@ INVALID = "-invalid-"
 
 
 class Org:  # pylint: disable=R0902,C0103
-    """Object describing an InfluxDB Organization."""
+    """Object describing an InfluxDB Organization.
 
-    ID_REGEX = re.compile("^[a-f0-9]{16}$")
+    Parameters:
+        name (str): *Optional* Name of the Organization.
+        description (str): *Optional* Long description for the Organization.
+        org_id (str): *Optional* The org ID for the Organization.  This will
+            be a 16 digit hex string.
+
+    """
 
     def __init__(
         self,
@@ -72,8 +96,8 @@ class Org:  # pylint: disable=R0902,C0103
         self._links = {}
 
     @property
-    def name(self):
-        """(str) Name of the organization."""
+    def name(self) -> str:
+        """Name of the organization."""
         if self._name == INVALID:
             raise ValueError(
                 "%s.name referenced before being assigned a value."
@@ -82,7 +106,7 @@ class Org:  # pylint: disable=R0902,C0103
         return self._name
 
     @name.setter
-    def name(self, value):
+    def name(self, value: str):
         if not isinstance(value, str):
             raise ValueError(
                 "%s.name must be a string." % (__class__.__name__)
@@ -103,7 +127,7 @@ class Org:  # pylint: disable=R0902,C0103
 
     @property
     def description(self) -> types.NullStr:
-        """(str or None) Description of the organization."""
+        """Description of the organization."""
         return self._description
 
     @description.setter
@@ -116,7 +140,7 @@ class Org:  # pylint: disable=R0902,C0103
 
     @property
     def id(self) -> str:
-        """(str) Organization ID from InfluxDB."""
+        """Organization ID from InfluxDB."""
         if self._org_id == INVALID:
             raise ValueError(
                 "%s.id reference before being assigned a value."
@@ -129,7 +153,7 @@ class Org:  # pylint: disable=R0902,C0103
         if not isinstance(value, str):
             raise ValueError("%s.id must be a string." % (__class__.__name__))
 
-        if not self.ID_REGEX.match(value):
+        if not types.ID_REGEX.match(value):
             raise ValueError(
                 "%s.id must be a 16 character hex string."
                 % (__class__.__name__)
@@ -138,7 +162,7 @@ class Org:  # pylint: disable=R0902,C0103
 
     @property
     def created(self) -> float:
-        """(float) Timestamp of when the org was created.
+        """Timestamp of when the org was created.
 
         The value is seconds since Jan 1, 1970 00:00:00 GMT.
 
@@ -161,7 +185,7 @@ class Org:  # pylint: disable=R0902,C0103
 
     @property
     def updated(self) -> float:
-        """(float) Timestamp of when the org was last updated.
+        """Timestamp of when the org was last updated.
 
         The value is seconds since Jan 1, 1970 00:00:00 GMT.
 
@@ -184,7 +208,7 @@ class Org:  # pylint: disable=R0902,C0103
 
     @property
     def active(self) -> bool:
-        """(bool) Whether or not the organization is active."""
+        """Whether or not the organization is active."""
         return self._active
 
     @active.setter
@@ -197,7 +221,7 @@ class Org:  # pylint: disable=R0902,C0103
 
     @property
     def links(self) -> dict:
-        """(dict) Links associated with this org."""
+        """Links associated with this org."""
         return self._links
 
     @links.setter

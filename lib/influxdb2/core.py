@@ -1,9 +1,25 @@
+# Copyright 2021 Hoplite Industries, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Core API components.
 
 """
 
 import collections
+import http
 import json as jsonlib
+import logging
 import typing
 
 # 3rd party
@@ -13,7 +29,7 @@ import requests
 from . import exceptions
 from . import orgs
 
-Response = collections.namedtuple("Response", ["code", "data"])
+logging.getLogger(__name__).addHandler(logging.NullHandler())
 
 
 class Influx:
@@ -32,24 +48,56 @@ class Influx:
             "orgs": None,
         }
 
+    def api_error(self, req: requests.Response):
+        """Throw an API exception on errors.
+
+        Parameters:
+            req(requests.Response): A ``Response`` object from the ``requests``
+                library showing an error.
+
+        Raises:
+            :class:`exceptions.InfluxAPIError` on an API error.
+            :class:`exceptions.InfluxHTTPError` on a regular HTTP error.
+        """
+        log.getLogger("%s.%s.api_error" % (__name__, __class__.__name__))
+
+        try:
+            json = req.json()
+            code = json["code"]
+            message = json["message"]
+            op = json.get("op", "")
+            influx_err = json.get("err", "")
+        except KeyError as err:
+            logging.error("Non api error response [%d]", req.status_code)
+            try:
+                tmp = http.HTTPStatus(req.status_code)
+                msg = "%d %s" % (tmp.value, tmp.phrase)
+            except ValueError:
+                msg = "Unknown error code [%d]" % (req.status_code)
+
+            raise exceptions.InfluxHTTPError(
+                req.code,
+                req.raw,
+                msg,
+            ) from None
+        raise exceptions.InfluxAPIError(
+            req.status_code, code, message, op, influx_err
+        )
+
     def _request(
         self,
         method: str,
         path: str,
         ignore_401: bool = False,
         **kwargs,
-    ):
+    ) -> requests.Response:
 
         url = "%s/%s" % (self._url.rstrip("/"), path.lstrip("/"))
 
         try:
             req = self._http.request(method, url, **kwargs)
-            try:
-                retval = Response(req.status_code, req.json())
-            except jsonlib.JSONDecodeError:
-                retval = Response(req.status_code, req.raw)
 
-            if retval.code == 401 and not ignore_401:
+            if req.status_code == 401 and not ignore_401:
                 raise exceptions.AuthenticationDenied()
 
         except IOError as err:
@@ -69,7 +117,7 @@ class Influx:
                 in the query string.
             kwargs: Additional arguments that the requests library takes
 
-        Returns: ``Response`` named tuple.
+        Returns: ``requests.Response`` object.
         """
 
         kwargs.setdefault("allow_redirects", True)
@@ -87,7 +135,7 @@ class Influx:
                 code is encountered.
             kwargs: Additional arguments that the requests library takes
 
-        Returns: ``Response`` named tuple.
+        Returns: ``requests.Response`` object.
         """
 
         kwargs.setdefault("allow_redirects", True)
@@ -103,7 +151,7 @@ class Influx:
                 code is encountered.
             kwargs: Additional arguments that the requests library takes
 
-        Returns: ``Response`` named tuple.
+        Returns: ``requests.Response`` object.
         """
 
         kwargs.setdefault("allow_redirects", False)
@@ -124,7 +172,7 @@ class Influx:
             json: (optional) json data to send in the body of the request.
             kwargs: Additional arguments that the requests library takes
 
-        Returns: ``Response`` named tuple.
+        Returns: ``requests.Response`` object.
         """
 
         return self._request(
@@ -149,7 +197,7 @@ class Influx:
             json: (optional) json data to send in the body of the request.
             kwargs: Additional arguments that the requests library takes
 
-        Returns: ``Response`` named tuple.
+        Returns: ``requests.Response`` object.
         """
 
         return self._request(
@@ -171,7 +219,7 @@ class Influx:
             json: (optional) json data to send in the body of the request.
             kwargs: Additional arguments that the requests library takes
 
-        Returns: ``Response`` named tuple.
+        Returns: ``requests.Response`` object.
         """
 
         return self._request(
@@ -193,9 +241,9 @@ class Influx:
                     code is encountered.
             kwargs: Additional arguments that the requests library takes
 
-        Returns: ``Response`` named tuple.
-
+        Returns: ``requests.Response`` object.
         """
+
         return self._request("delete", path, ignore_401=ignore_401, **kwargs)
 
     @property

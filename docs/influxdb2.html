@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>influxdb2 package &#8212; InfluxDB2 1.0 documentation</title>
+    <title>influxdb2 package &#8212; InfluxDB2 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="influxdb2.obj package" href="influxdb2.obj.html" />
-    <link rel="prev" title="Welcome to lib’s documentation!" href="index.html" />
+    <link rel="prev" title="Welcome to InfluxDB2’s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -29,18 +29,60 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="influxdb2-package">
-<h1>influxdb2 package<a class="headerlink" href="#influxdb2-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-influxdb2">
+<span id="influxdb2-package"></span><h1>influxdb2 package<a class="headerlink" href="#module-influxdb2" title="Permalink to this headline">¶</a></h1>
+<p>Python interface to the InfluxDB 2.0 HTTP API.</p>
+<div class="section" id="project-license">
+<h2>Project License<a class="headerlink" href="#project-license" title="Permalink to this headline">¶</a></h2>
+<p>Copyright 2021 Hoplite Industries, Inc.</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this package except in compliance with the License.
+You may obtain a copy of the License at</p>
+<ul class="simple">
+<li><p>Included Apache <a class="reference download internal" download="" href="_downloads/3b423627fe21976c3c06e60f78e14ae1/LICENSE"><code class="xref download docutils literal notranslate"><span class="pre">LICENSE</span></code></a> file.</p></li>
+<li><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p></li>
+</ul>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+</div>
+<div class="section" id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="influxdb2.connect">
+<span class="sig-prename descclassname"><span class="pre">influxdb2.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2.html#connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an InfluxDB “connection” object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Base URL to your InfluxDB instance.
+Example: <a class="reference external" href="https://localhost:8086/">https://localhost:8086/</a></p></li>
+<li><p><strong>token</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Valid token for your user to log in with.
+Example: abcdef1234567890</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="influxdb2.core.html#influxdb2.core.Influx" title="influxdb2.core.Influx"><code class="xref py py-class docutils literal notranslate"><span class="pre">core.Influx</span></code></a> instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="influxdb2.obj.html">influxdb2.obj package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="influxdb2.obj.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="influxdb2.obj.org.html">influxdb2.obj.org module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="influxdb2.obj.common.html">influxdb2.obj.common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="influxdb2.obj.org.html">influxdb2.obj.org module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="influxdb2.obj.org.html#organization-object">Organization Object</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="influxdb2.obj.html#module-influxdb2.obj">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -56,29 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="influxdb2.types.html">influxdb2.types module</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="module-influxdb2">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-influxdb2" title="Permalink to this headline">¶</a></h2>
-<p>InfluxDB 2.0 Python API</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="influxdb2.connect">
-<span class="sig-prename descclassname"><span class="pre">influxdb2.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2.html#connect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get an InfluxDB “connection” object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Base URL to your InfluxDB instance.
-Example: <a class="reference external" href="https://localhost:8086/">https://localhost:8086/</a></p></li>
-<li><p><strong>token</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Valid token for your user to log in with.
-Example: abcdef1234567890</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference internal" href="influxdb2.core.html#influxdb2.core.Influx" title="influxdb2.core.Influx"><code class="xref py py-class docutils literal notranslate"><span class="pre">influxdb2.core.Influx</span></code></a> instance.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 </div>
 
@@ -101,6 +120,8 @@ Example: abcdef1234567890</p></li>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">influxdb2 package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-license">Project License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#package-contents">Package Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="influxdb2.obj.html">influxdb2.obj package</a></li>
 </ul>
@@ -112,27 +133,6 @@ Example: abcdef1234567890</p></li>
 <li class="toctree-l3"><a class="reference internal" href="influxdb2.types.html">influxdb2.types module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-influxdb2">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html">influxdb2 Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lib</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">influxdb2 package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.obj.html">influxdb2.obj package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.core.html">influxdb2.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.exceptions.html">influxdb2.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.orgs.html">influxdb2.orgs module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.types.html">influxdb2.types module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-influxdb2">Module contents</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -141,7 +141,7 @@ Example: abcdef1234567890</p></li>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to lib’s documentation!</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to InfluxDB2’s documentation!</a></li>
       <li>Next: <a href="influxdb2.obj.html" title="next chapter">influxdb2.obj package</a></li>
   </ul></li>
 </ul>

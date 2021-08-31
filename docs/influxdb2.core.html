@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>influxdb2.core module &#8212; InfluxDB2 1.0 documentation</title>
+    <title>influxdb2.core module &#8212; InfluxDB2 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -37,15 +37,24 @@
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.core.</span></span><span class="sig-name descname"><span class="pre">Influx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2/core.html#Influx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.core.Influx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Core class for InfluxDB connections.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="influxdb2.core.Influx.api_error">
+<span class="sig-name descname"><span class="pre">api_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2/core.html#Influx.api_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.core.Influx.api_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Throw an API exception on errors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>url</strong> (<em>str</em>) – </p></li>
-<li><p><strong>token</strong> (<em>str</em>) – </p></li>
-<li><p><strong>org</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<dd class="field-odd"><p><strong>req</strong> (<em>requests.Response</em>) – A <code class="docutils literal notranslate"><span class="pre">Response</span></code> object from the <code class="docutils literal notranslate"><span class="pre">requests</span></code>
+library showing an error.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="influxdb2.exceptions.html#influxdb2.exceptions.InfluxAPIError" title="influxdb2.exceptions.InfluxAPIError"><strong>exceptions.InfluxAPIError</strong></a> – </p></li>
+<li><p><a class="reference internal" href="influxdb2.exceptions.html#influxdb2.exceptions.InfluxHTTPError" title="influxdb2.exceptions.InfluxHTTPError"><strong>exceptions.InfluxHTTPError</strong></a> – </p></li>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="influxdb2.core.Influx.delete">
 <span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_401</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2/core.html#Influx.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.core.Influx.delete" title="Permalink to this definition">¶</a></dt>
@@ -61,7 +70,7 @@ code is encountered.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns: <code class="docutils literal notranslate"><span class="pre">Response</span></code> named tuple.</p>
+<p>Returns: <code class="docutils literal notranslate"><span class="pre">requests.Response</span></code> object.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -81,7 +90,7 @@ in the query string.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns: <code class="docutils literal notranslate"><span class="pre">Response</span></code> named tuple.</p>
+<p>Returns: <code class="docutils literal notranslate"><span class="pre">requests.Response</span></code> object.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -99,7 +108,7 @@ code is encountered.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns: <code class="docutils literal notranslate"><span class="pre">Response</span></code> named tuple.</p>
+<p>Returns: <code class="docutils literal notranslate"><span class="pre">requests.Response</span></code> object.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -117,7 +126,7 @@ code is encountered.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns: <code class="docutils literal notranslate"><span class="pre">Response</span></code> named tuple.</p>
+<p>Returns: <code class="docutils literal notranslate"><span class="pre">requests.Response</span></code> object.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -144,7 +153,7 @@ file-like object to send in the body of the request.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns: <code class="docutils literal notranslate"><span class="pre">Response</span></code> named tuple.</p>
+<p>Returns: <code class="docutils literal notranslate"><span class="pre">requests.Response</span></code> object.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -165,7 +174,7 @@ file-like object to send in the body of the request.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns: <code class="docutils literal notranslate"><span class="pre">Response</span></code> named tuple.</p>
+<p>Returns: <code class="docutils literal notranslate"><span class="pre">requests.Response</span></code> object.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -186,25 +195,7 @@ file-like object to send in the body of the request.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Returns: <code class="docutils literal notranslate"><span class="pre">Response</span></code> named tuple.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="influxdb2.core.Response">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.core.</span></span><span class="sig-name descname"><span class="pre">Response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#influxdb2.core.Response" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="influxdb2.core.Response.code">
-<span class="sig-name descname"><span class="pre">code</span></span><a class="headerlink" href="#influxdb2.core.Response.code" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 0</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="influxdb2.core.Response.data">
-<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#influxdb2.core.Response.data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alias for field number 1</p>
+<p>Returns: <code class="docutils literal notranslate"><span class="pre">requests.Response</span></code> object.</p>
 </dd></dl>
 
 </dd></dl>
@@ -230,30 +221,14 @@ file-like object to send in the body of the request.</p></li>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="influxdb2.html">influxdb2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="influxdb2.html#project-license">Project License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="influxdb2.html#package-contents">Package Contents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="influxdb2.html#subpackages">Subpackages</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="influxdb2.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">influxdb2.core module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="influxdb2.exceptions.html">influxdb2.exceptions module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="influxdb2.orgs.html">influxdb2.orgs module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="influxdb2.types.html">influxdb2.types module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="influxdb2.html#module-influxdb2">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html">influxdb2 Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lib</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="influxdb2.html">influxdb2 package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="influxdb2.html#subpackages">Subpackages</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="influxdb2.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">influxdb2.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.exceptions.html">influxdb2.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.orgs.html">influxdb2.orgs module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.types.html">influxdb2.types module</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="influxdb2.html#module-influxdb2">Module contents</a></li>
 </ul>
 </li>
 </ul>

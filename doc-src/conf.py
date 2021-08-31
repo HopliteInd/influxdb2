@@ -12,20 +12,20 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.realpath(os.path.join("..", "lib")))
+sys.path.insert(0, '/home/blkmajik/gitroot/influxdb2/lib')
 
 
 # -- Project information -----------------------------------------------------
 
 project = 'InfluxDB2'
 copyright = '2021, Hoplite Industries, Inc.'
-author = 'Shawn Michael'
+author = 'Hoplite Industries, Inc.'
 
 # The short X.Y version
 version = '1.0'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = '1.0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,10 +35,10 @@ release = '1.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
-    "sphinx_autodoc_typehints"
+    'sphinx.ext.napoleon',
+    'sphinx_autodoc_typehints',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -76,6 +76,3 @@ html_static_path = ['_static']
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
-
-autodoc_typehints = "description"
-

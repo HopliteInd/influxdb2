@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>influxdb2.obj.org module &#8212; InfluxDB2 1.0 documentation</title>
+    <title>influxdb2.obj.org module &#8212; InfluxDB2 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="influxdb2.core module" href="influxdb2.core.html" />
-    <link rel="prev" title="influxdb2.obj package" href="influxdb2.obj.html" />
+    <link rel="prev" title="influxdb2.obj.common module" href="influxdb2.obj.common.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -31,10 +31,12 @@
             
   <div class="section" id="module-influxdb2.obj.org">
 <span id="influxdb2-obj-org-module"></span><h1>influxdb2.obj.org module<a class="headerlink" href="#module-influxdb2.obj.org" title="Permalink to this headline">¶</a></h1>
-<p>Organization Object</p>
+<div class="section" id="organization-object">
+<h2>Organization Object<a class="headerlink" href="#organization-object" title="Permalink to this headline">¶</a></h2>
 <p>This object is based on the following JSON structure that comes back
 from InfluxDB.</p>
-<div class="highlight-json notranslate" id="json-org-structure"><div class="highlight"><pre><span></span><span class="p">{</span>
+<p id="json-org-structure">JSON Response for an Organization.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;self&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/orgs/1&quot;</span><span class="p">,</span>
         <span class="nt">&quot;members&quot;</span><span class="p">:</span> <span class="s2">&quot;/api/v2/orgs/1/members&quot;</span><span class="p">,</span>
@@ -62,21 +64,17 @@ from InfluxDB.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>description</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>org_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>name</strong> (<em>str</em>) – <em>Optional</em> Name of the Organization.</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – <em>Optional</em> Long description for the Organization.</p></li>
+<li><p><strong>org_id</strong> (<em>str</em>) – <em>Optional</em> The org ID for the Organization.  This will
+be a 16 digit hex string.</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="influxdb2.obj.org.Org.ID_REGEX">
-<span class="sig-name descname"><span class="pre">ID_REGEX</span></span><em class="property"> <span class="pre">=</span> <span class="pre">re.compile('^[a-f0-9]{16}$')</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.ID_REGEX" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="influxdb2.obj.org.Org.active">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">active</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.active" title="Permalink to this definition">¶</a></dt>
-<dd><p>(bool) Whether or not the organization is active.</p>
+<dd><p>Whether or not the organization is active.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
@@ -87,7 +85,7 @@ from InfluxDB.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="influxdb2.obj.org.Org.created">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">created</span></span><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.created" title="Permalink to this definition">¶</a></dt>
-<dd><p>(float) Timestamp of when the org was created.</p>
+<dd><p>Timestamp of when the org was created.</p>
 <p>The value is seconds since Jan 1, 1970 00:00:00 GMT.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -102,7 +100,7 @@ from InfluxDB.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="influxdb2.obj.org.Org.description">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="pre">:</span> <span class="pre">influxdb2.types.NullStr</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.description" title="Permalink to this definition">¶</a></dt>
-<dd><p>(str or None) Description of the organization.</p>
+<dd><p>Description of the organization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>~NullStr</p>
@@ -117,7 +115,7 @@ from InfluxDB.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – <p>Dictionary containing an org response from InfluxDB.</p>
-<p>See the <a class="reference internal" href="influxdb2.orgs.html#json-org-structure"><span class="std std-ref">JSON Org Structure</span></a> for
+<p>See the <a class="reference internal" href="#json-org-structure"><span class="std std-ref">JSON Org Structure</span></a> for
 details on what the dictionary should look like.</p>
 </p>
 </dd>
@@ -131,7 +129,7 @@ details on what the dictionary should look like.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>data</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code>]) – <p>Dictionary containing an org response from InfluxDB.</p>
-<p>See the <a class="reference internal" href="influxdb2.orgs.html#json-org-structure"><span class="std std-ref">JSON Org Structure</span></a> for
+<p>See the <a class="reference internal" href="#json-org-structure"><span class="std std-ref">JSON Org Structure</span></a> for
 details on what the JSON should look like.</p>
 </p>
 </dd>
@@ -141,7 +139,7 @@ details on what the JSON should look like.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="influxdb2.obj.org.Org.id">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>(str) Organization ID from InfluxDB.</p>
+<dd><p>Organization ID from InfluxDB.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
@@ -152,7 +150,7 @@ details on what the JSON should look like.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="influxdb2.obj.org.Org.links">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">links</span></span><em class="property"><span class="pre">:</span> <span class="pre">dict</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.links" title="Permalink to this definition">¶</a></dt>
-<dd><p>(dict) Links associated with this org.</p>
+<dd><p>Links associated with this org.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
@@ -162,14 +160,19 @@ details on what the JSON should look like.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="influxdb2.obj.org.Org.name">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#influxdb2.obj.org.Org.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>(str) Name of the organization.</p>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the organization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="influxdb2.obj.org.Org.updated">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">updated</span></span><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><a class="headerlink" href="#influxdb2.obj.org.Org.updated" title="Permalink to this definition">¶</a></dt>
-<dd><p>(float) Timestamp of when the org was last updated.</p>
+<dd><p>Timestamp of when the org was last updated.</p>
 <p>The value is seconds since Jan 1, 1970 00:00:00 GMT.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -183,6 +186,7 @@ details on what the JSON should look like.</p>
 
 </dd></dl>
 
+</div>
 </div>
 
 
@@ -204,30 +208,16 @@ details on what the JSON should look like.</p>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="influxdb2.html">influxdb2 package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="influxdb2.html#project-license">Project License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="influxdb2.html#package-contents">Package Contents</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="influxdb2.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="influxdb2.obj.html">influxdb2.obj package</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="influxdb2.obj.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="influxdb2.obj.html#module-influxdb2.obj">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="influxdb2.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="influxdb2.html#module-influxdb2">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html">influxdb2 Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/index.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">lib</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="influxdb2.html">influxdb2 package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="influxdb2.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="influxdb2.obj.html">influxdb2.obj package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="influxdb2.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="influxdb2.html#module-influxdb2">Module contents</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -238,7 +228,7 @@ details on what the JSON should look like.</p>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="influxdb2.html">influxdb2 package</a><ul>
   <li><a href="influxdb2.obj.html">influxdb2.obj package</a><ul>
-      <li>Previous: <a href="influxdb2.obj.html" title="previous chapter">influxdb2.obj package</a></li>
+      <li>Previous: <a href="influxdb2.obj.common.html" title="previous chapter">influxdb2.obj.common module</a></li>
       <li>Next: <a href="influxdb2.core.html" title="next chapter">influxdb2.core module</a></li>
   </ul></li>
   </ul></li>

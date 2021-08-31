@@ -1,6 +1,11 @@
 influxdb2 package
 =================
 
+.. automodule:: influxdb2
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -19,11 +24,3 @@ Submodules
    influxdb2.exceptions
    influxdb2.orgs
    influxdb2.types
-
-Module contents
----------------
-
-.. automodule:: influxdb2
-   :members:
-   :undoc-members:
-   :show-inheritance:
