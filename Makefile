@@ -29,7 +29,9 @@ github: Makefile
 	env PYTHONPATH="$(PYPATH)" sphinx-apidoc \
 		--extensions sphinx.ext.napoleon,sphinx_autodoc_typehints \
 		-M -e -T -A "Hoplite Industries, Inc." \
-		-V 1.0 -R 1.0.1 -H InfluxDB2 -F -a  -o doc-src  lib
+		-V 1.0 -R 1.0.1 -H InfluxDB2 -F  -o doc-src  lib
+	sed -i "/sphinx-quickstart on/d" doc-src/index.rst
+	sed -i "/sphinx.ext.viewcode/d" doc-src/conf.py
 	env PYTHONPATH="$(PYPATH)" $(SPHINXBUILD) -M html \
 		"$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	mv doc-out/html docs

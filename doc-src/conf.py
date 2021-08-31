@@ -10,9 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.insert(0, '/home/blkmajik/gitroot/influxdb2/lib')
+# import os
+# import sys
+# sys.path.insert(0, '/home/blkmajik/gitroot/influxdb2/lib')
 
 
 # -- Project information -----------------------------------------------------
@@ -35,7 +35,6 @@ release = '1.0.1'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
     'sphinx.ext.todo',
     'sphinx.ext.napoleon',
     'sphinx_autodoc_typehints',

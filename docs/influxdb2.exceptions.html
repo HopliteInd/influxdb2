@@ -34,14 +34,14 @@
 <p>Exceptions for influxdb2 API.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="influxdb2.exceptions.AuthenticationDenied">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">AuthenticationDenied</span></span><a class="reference internal" href="_modules/influxdb2/exceptions.html#AuthenticationDenied"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.exceptions.AuthenticationDenied" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">AuthenticationDenied</span></span><a class="headerlink" href="#influxdb2.exceptions.AuthenticationDenied" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#influxdb2.exceptions.InfluxHTTPError" title="influxdb2.exceptions.InfluxHTTPError"><code class="xref py py-class docutils literal notranslate"><span class="pre">influxdb2.exceptions.InfluxHTTPError</span></code></a></p>
 <p>Raised when a bad password or user name is encountered.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="influxdb2.exceptions.InfluxAPIError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">InfluxAPIError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2/exceptions.html#InfluxAPIError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.exceptions.InfluxAPIError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">InfluxAPIError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#influxdb2.exceptions.InfluxAPIError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#influxdb2.exceptions.InfluxError" title="influxdb2.exceptions.InfluxError"><code class="xref py py-class docutils literal notranslate"><span class="pre">influxdb2.exceptions.InfluxError</span></code></a></p>
 <p>Exception raised for errors from the InfluxDB API.</p>
 <dl class="field-list simple">
@@ -105,7 +105,7 @@ Useful for debugging.</p></li>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="influxdb2.exceptions.InfluxError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">InfluxError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2/exceptions.html#InfluxError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.exceptions.InfluxError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">InfluxError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#influxdb2.exceptions.InfluxError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Base exception for all errors in the influxdb2 package.</p>
 <dl class="py property">
@@ -123,7 +123,7 @@ Useful for debugging.</p></li>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="influxdb2.exceptions.InfluxHTTPError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">InfluxHTTPError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2/exceptions.html#InfluxHTTPError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.exceptions.InfluxHTTPError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">InfluxHTTPError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#influxdb2.exceptions.InfluxHTTPError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#influxdb2.exceptions.InfluxError" title="influxdb2.exceptions.InfluxError"><code class="xref py py-class docutils literal notranslate"><span class="pre">influxdb2.exceptions.InfluxError</span></code></a></p>
 <p>Base exception for errors derived from HTTP requests.</p>
 <dl class="py property">
@@ -152,7 +152,7 @@ Useful for debugging.</p></li>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="influxdb2.exceptions.NetworkError">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">NetworkError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/influxdb2/exceptions.html#NetworkError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#influxdb2.exceptions.NetworkError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">influxdb2.exceptions.</span></span><span class="sig-name descname"><span class="pre">NetworkError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#influxdb2.exceptions.NetworkError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#influxdb2.exceptions.InfluxError" title="influxdb2.exceptions.InfluxError"><code class="xref py py-class docutils literal notranslate"><span class="pre">influxdb2.exceptions.InfluxError</span></code></a></p>
 <p>Raised when a network error happens.</p>
 </dd></dl>
